@@ -1,0 +1,18 @@
+{% load weave_tags %}<?xml version="1.0" encoding="UTF-8"?>
+<defaults pageTitle="" dataInfoURL="{% url dictionary-index %}">
+
+  {% with config.data_filter.key_unit_type.probing_indicator as probing_indicator %}
+  {% with config.data_filter.key_unit_type.secondary_probing_indicator as secondary_probing %}
+  <dataTable name="DataHub {{ config.key_unit_type.name }}" mainProbeAttributeColumnNames="{% indicator_name probing_indicator config.data_filter %}{% if secondary_probing %}, {% indicator_name secondary_probing config.data_filter %}{% endif %}" hierarchy="{% url weave-indicator_hierarchy config.data_filter.key_unit_type.pk %}" fileDownloadURL=""/>
+  {% endwith %}
+  {% endwith %}
+
+  {% if config.default_coloring %}<colormap colorAttributeColumnName="{% indicator_name config.default_coloring config.data_filter %}" colorRampName="Jet" numDivision="5" />{% endif %}
+
+  {% for row in config.rows.all %}
+    {{ row.get_xml }}
+  {% endfor %}
+</defaults>
+
+
+

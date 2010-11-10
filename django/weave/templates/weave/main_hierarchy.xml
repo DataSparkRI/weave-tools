@@ -1,0 +1,11 @@
+<hierarchy name="Indicators">{% for key_unit_type in key_unit_types %}
+        <category name="{{ key_unit_type }}">
+            <category name="{{ key_unit_type }} - All">{% with key_unit_type.get_data_table as data_table %}{% for attribute_column in data_table.attributecolumn_set.all %}{% if attribute_column.display_name %}
+                <attribute dataTableName="{{ data_table.name }}" keyType="{{ attribute_column.key_unit_type }}" name="{{ attribute_column.display_name }}" year="{{ attribute_column.year }}"/>{% endif %}{% endfor %}{% endwith %}
+            </category>{% for data_filter in key_unit_type.datafilter_set.all %}
+            <category name="{{ data_filter.name }}">{% with data_filter.get_data_table as data_table %}{% for attribute_column in data_table.attributecolumn_set.all %}{% if attribute_column.display_name %}
+                <attribute dataTableName="{{ data_table.name }}" keyType="{{ attribute_column.key_unit_type }}" name="{{ attribute_column.display_name }}" year="{{ attribute_column.year }}"/>{% endif %}{% endfor %}{% endwith %}
+            </category>{% endfor %}
+        </category>
+    {% endfor %}
+</hierarchy>

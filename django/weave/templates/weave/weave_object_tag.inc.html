@@ -1,0 +1,20 @@
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+            id="{% if weave_object_id %}{{ weave_object_id }}{% else %}weave{% endif %}" width="{{ width }}" height="{{ height }}"
+            codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+            <param name="movie" value="/media/weave/weave.swf" />
+            <param name="quality" value="high" />
+            <param name="bgcolor" value="#cccccc" />
+            <param name="allowScriptAccess" value="sameDomain" />
+            <param name="wmode" value="transparent">
+            <embed src="/media/weave/weave.swf" quality="high" bgcolor="#cccccc"
+                width="{{ width }}" height="{{ height }}" name="weave" align="middle"
+                bgcolor="#cccccc"
+                play="true"
+                loop="false"
+                quality="high"
+                wmode="transparent"
+                allowScriptAccess="sameDomain"
+                type="application/x-shockwave-flash"
+                pluginspage="http://www.adobe.com/go/getflashplayer">
+            </embed>
+        </object>

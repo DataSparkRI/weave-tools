@@ -1,0 +1,3 @@
+  <row width="{{ row.width }}%" height="{{ row.height }}%">
+    {% for tool in row.tools.all %}{{ tool.get_xml }}{% endfor %}
+  </row>

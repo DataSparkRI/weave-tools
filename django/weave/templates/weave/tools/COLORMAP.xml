@@ -1,0 +1,1 @@
+{% load weave_tags %}    <ColorMapTool title="" colorAttributeColumnName="{% indicator_name tool.colorAttribute tool.datafilter_to_use %}" colormapName="Jet" width="{{ tool.width }}%" height="{{ tool.height }}%"/>

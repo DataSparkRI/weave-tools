@@ -1,0 +1,3 @@
+{% load weave_tags %}    <dataTable name="{{ data_table.name }}" connection="weave_db" keysQuery="{{ data_table.keys_query }}">{% for indicator in indicators %}
+        <attributeColumn name="{% indicator_name indicator data_table %}" min="" max="" year="" dataWithKeysQuery="SELECT {{ indicator.key_field_name }}, `{{ indicator.name}}` from weave.`{{ indicator.table_name }}` WHERE {{ indicator.key_field_name }} in ({{ data_table.keys_query }})" /> {% endfor %}
+    </dataTable>

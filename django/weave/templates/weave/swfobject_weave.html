@@ -1,0 +1,21 @@
+    <div id="flashcontent">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{{width}}" height="{{height}}" id="{% if weave_object_id %}{{ weave_object_id }}{% else %}weave{% endif %}">
+            <param name="wmode" value="opaque">
+            <param name="movie" value="/media/weave/weave.swf" />
+            <param value="always" name="allowscriptaccess">
+            <param value="true" name="allowfullscreen">
+            <!--[if !IE]>-->
+            <object type="application/x-shockwave-flash" data="/media/weave/weave.swf" width="{{width}}" height="{{height}}">
+            <param name="wmode" value="opaque">
+            <param value="always" name="allowscriptaccess">
+            <param value="true" name="allowfullscreen">
+            <!--<![endif]-->
+                <h1> We apologize, but in order to view our visualizations you need to install the latest version of Adobe Flash Player.</h1><br/>
+                <a href="http://www.adobe.com/go/getflashplayer">
+                    <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
+                </a>
+            <!--[if !IE]>-->
+            </object>
+            <!--<![endif]-->
+        </object>
+    </div>

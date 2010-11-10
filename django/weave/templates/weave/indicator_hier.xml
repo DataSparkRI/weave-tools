@@ -1,0 +1,16 @@
+{% load weave_tags %}<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE indicatorlist SYSTEM "ontology.dtd">
+<indicatorlist>{% spaceless %}
+    {% for data_filter in data_filters %}
+        <category name="{{ data_filter.name }}">
+            <category name="Uncategorized">
+            {% for indicator in orphaned_indicators %}
+                <indicator name="{% indicator_name indicator data_filter %}"/>
+            {% endfor %}
+            </category>
+            {% for category in categories %}
+                {% category_display category data_filter %}
+            {% endfor %}
+        </category>
+    {% endfor %}
+{% endspaceless %}</indicatorlist>

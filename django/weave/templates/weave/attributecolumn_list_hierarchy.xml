@@ -1,0 +1,28 @@
+{% load weave_tags %}<category name="{{ hierarchy_name }}">{% for key_unit_type in key_unit_types %}
+        <category name="{{ key_unit_type }}">
+            <category name="{{ key_unit_type }} - All">
+            {% with key_unit_type.get_data_table as data_table %}
+            {% for attribute_column in data_table.ordered_attribute_columns|filter_for_attr_list_Q:list_Q %}
+            {% if attribute_column.display_name %}
+                <attribute dataTableName="{{ data_table.name }}" keyType="{{ attribute_column.key_unit_type }}" name="{{ attribute_column.display_name }}" year="{{ attribute_column.year }}"/>
+            {% endif %}
+            {% endfor %}
+            {% endwith %}
+            </category>
+            {% for data_filter in key_unit_type.datafilter_set.all %}
+            {% with data_filter.get_data_table as data_table %}
+            {% if data_table and data_filter.display %}
+            <category name="{{ data_filter.name }}">
+                {% for attribute_column in data_table.ordered_attribute_columns|filter_for_attr_list_Q:list_Q %}
+                {% if attribute_column.display_name %}
+                <attribute dataTableName="{{ data_table.name }}" keyType="{{ attribute_column.key_unit_type }}" name="{{ attribute_column.display_name }}" year="{{ attribute_column.year }}"/>
+                {% endif %}
+                {% endfor %}
+            </category>
+            {% endif %}
+            {% endwith %}
+            {% endfor %}
+        </category>
+    {% endfor %}
+</category>
+
