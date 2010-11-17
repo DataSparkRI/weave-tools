@@ -12,7 +12,7 @@
         database="{{ settings.DATABASE_NAME }}" 
         user="{{ settings.DATABASE_USER }}"
         pass="{{ settings.DATABASE_PASSWORD }}" 
-        name="{{ weave_settings.CONNECTION" />
+        name="{{ weave_settings.CONNECTION }}" />
     
     <accessLog
         connection="portal_db"
