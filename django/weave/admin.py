@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.conf import settings
-from weave.models import (ClientConfiguration, DataFilter,
-                          KeyUnitType, Category, GeometryCollection, 
-                          DataFilter, DataFilterKey)
+from weave.models import (ClientConfiguration, GeometryCollection, 
+                          DataFilter, DataFilterKey, AttributeColumn)
 
 class ClientConfigurationAdmin(admin.ModelAdmin):
     exclude = ('file', )
@@ -21,10 +20,6 @@ class DataFilterAdmin(admin.ModelAdmin):
     list_display = ('name','key_unit_type',)
     list_editable = ('key_unit_type',)
 admin.site.register(DataFilter, DataFilterAdmin)
-
-admin.site.register(KeyUnitType)
-admin.site.register(Category)
-
-
 admin.site.register(GeometryCollection)
 admin.site.register(DataFilterKey)
+admin.site.register(AttributeColumn)
