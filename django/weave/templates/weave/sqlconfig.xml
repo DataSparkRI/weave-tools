@@ -1,23 +1,21 @@
 {% load weave_tags %}<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlConfig SYSTEM "sqlconfig.dtd">
-<sqlConfig serverName="DataHub WEAVE Server">
-    <connection dbms="{{ weave_settings.DBMS }}" database="{{ settings.DATABASE_NAME }}" user="{{ settings.DATABASE_USER }}"  pass="{{ settings.DATABASE_PASSWORD }}" name="portal_db" />
-
-    <accessLog connection="portal_db" schema="weave" table="accesslog"/><!-- table will be created automatically -->
-
-    {{ weave_settings.GEOMETRY_COLLECTION|safe }}
-
-    {% for data_table in data_tables %}
-    {% if data_table.name %}
-    <dataTable name="{{ data_table.name }}" keyType="{{ data_table.key_unit_type }}" connection="portal_db">
-        {% for attribute_column in data_table.ordered_attribute_columns.all %}
-        {% if attribute_column.display_name %}
-        <attributeColumn name="{{ attribute_column.display_name }}" dataType="{{ attribute_column.data_type }}" min="{{ attribute_column.min|default_if_none:"" }}" max="{{ attribute_column.max|default_if_none:"" }}" year="{{ attribute_column.year }}" dataWithKeysQuery={{ attribute_column.data_with_keys_query|quoteattr|safe }} />
-        {% endif %}
-        {% endfor %}
-    </dataTable>
-    {% endif %}
-    {% endfor %}
-
+<sqlConfig serverName="WEAVE Server">
+    <databaseConfig 
+        connection="portal_db"
+        dataConfigTable="{{ attribute_column_table }}" 
+        geometryConfigTable="{{ geometry_column_table }}" 
+        schema="public" />
+    
+    <connection 
+        dbms="{{ weave_settings.DBMS }}" 
+        database="{{ settings.DATABASE_NAME }}" 
+        user="{{ settings.DATABASE_USER }}"
+        pass="{{ settings.DATABASE_PASSWORD }}" 
+        name="{{ weave_settings.CONNECTION" />
+    
+    <accessLog
+        connection="portal_db"
+        schema="weave"
+        table="accesslog" /><!-- table will be created automatically -->
 </sqlConfig>
-

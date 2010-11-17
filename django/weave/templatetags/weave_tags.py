@@ -4,7 +4,7 @@ from xml.sax.saxutils import quoteattr as sax_quoteattr
 from django import template
 from django.template.defaultfilters import stringfilter
 
-from weave.models import KeyUnitType, AttributeColumn
+from weave.models import AttributeColumn
 
 register = template.Library()
 
