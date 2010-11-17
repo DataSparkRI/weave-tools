@@ -10,13 +10,6 @@ from django.contrib.contenttypes import generic
 
 from weave.fields import PercentField
 
-class Category(models.Model):
-    parent = models.ForeignKey('self',null=True,blank=True,related_name='children')
-    name = models.CharField(max_length=300)
-
-    def __unicode__(self):
-        return u'%s' % (self.name)
-
 class AttributeColumnManager(models.Manager):
     def years(self):
         return self.exclude(year=None).exclude(year='') \
@@ -64,7 +57,6 @@ class AttributeColumn(BaseAttributeColumn):
     object_id = models.PositiveIntegerField(null=True)
     source = generic.GenericForeignKey('content_type', 'object_id')    
     display_name = models.CharField(max_length=256)
-    category = models.ForeignKey('Category',null=True,blank=True,related_name='indicators')
 
     objects = AttributeColumnManager()
 
