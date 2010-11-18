@@ -1,15 +1,10 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from weave.models import ClientConfiguration, DataFilter
 from django.core.urlresolvers import reverse
-#from dictionary.models import Variable
 from django.conf import settings
-from django.contrib.sites.models import Site
-from django.views.decorators.cache import cache_page
-from django.core.urlresolvers import reverse
-from weave import cached_indicator_hierarchy
-from webportal.indicators.models import IndicatorData
+
+from weave.models import ClientConfiguration, DataFilter
 
 def index(request):
     "Weave landing page"
