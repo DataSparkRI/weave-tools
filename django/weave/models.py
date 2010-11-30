@@ -39,7 +39,7 @@ class BaseAttributeColumn(models.Model):
 
     class Meta:
         unique_together = (
-            ('name', 'keyType', 'year', ),
+            ('name', 'keyType', 'year', 'dataTable' ),
         )
         abstract = True
 
