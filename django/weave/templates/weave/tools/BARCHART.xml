@@ -1,1 +1,0 @@
-{% load weave_tags %}    <BarChartTool title="" sortingAttributeColumnName="{% indicator_name tool.sortingAttribute tool.datafilter_to_use %}" heightAttributeColumnName="{% indicator_name tool.heightAttribute tool.datafilter_to_use %}" width="{{ tool.width }}%" height="{{ tool.height }}%"/>

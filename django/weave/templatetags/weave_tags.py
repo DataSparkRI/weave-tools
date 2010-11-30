@@ -36,10 +36,8 @@ def attributecolumn_list_hierarchy(hierarchy_name, attributecolumn_Q):
     Please note that this is a Q, you can't pass a list or QuerySet here or the
     tag will fail as currently written.
     """
-    key_unit_types = KeyUnitType.objects.filter(
-        name__in=AttributeColumn.objects.filter(attributecolumn_Q).order_by(
-            'year').values_list('key_unit_type', flat=True).distinct()
-    )
+    key_unit_types = AttributeColumn.objects.filter(attributecolumn_Q).order_by(
+            'year').values_list('keyType', flat=True).distinct()
     return {
         'hierarchy_name': hierarchy_name, 
         'list_Q': attributecolumn_Q,

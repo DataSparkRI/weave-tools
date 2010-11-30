@@ -38,14 +38,28 @@ class DataFilterTest(TestCase):
         Test that only DataFilters set to `display` show up for a normal user
         """
         from django.template.loader import render_to_string
-        from weave.models import KeyUnitType, AttributeColumn, DataTable, DataFilter
+        from weave.models import AttributeColumn, DataFilter
         from django.db.models import Q
-        #key_unit_type = KeyUnitType.objects.create(name='School')
-        #data_filter = DataFilter.objects.all(
+
+        AttributeColumn.objects.create(
+            name='test',
+            display_name='test',
+            keyType ='School',
+            dataType='string',
+        )
+        """AttributeColumn.objects.create(
+            data_table = data_table,
+            name='test',
+            display_name='test',
+            key_unit_type='Test',
+            data_type='string',
+        )"""
+        
+
         context = {
             'hierarchy_name': 'test', 
             'list_Q': Q(),
-            'key_unit_types': KeyUnitType.objects.all()
+            'key_unit_types': AttributeColumn.objects.all().values_list('keyType', flat=True).distinct()
         }
         df = DataFilter.objects.all()[0]
         self.failUnless('<category name="%s">' % df.name in render_to_string('weave/attributecolumn_list_hierarchy.xml', context))

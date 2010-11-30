@@ -1,6 +1,0 @@
-{% load weave_tags %}    <DataTableTool title="" width="{{ tool.width }}%" height="{{ tool.height }}%">
-                         {% for indicator in tool.table_columns.all %}
-                            <visibleColumn name="{% indicator_name indicator tool.datafilter_to_use %}"/>
-                         {% endfor %}
-                         </DataTableTool>
-

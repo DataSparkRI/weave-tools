@@ -1,1 +1,0 @@
-{% load weave_tags %}    <HistogramTool title="" binAttributeColumnName="{% indicator_name tool.binAttribute tool.datafilter_to_use %}" width="{{ tool.width }}%" height="{{ tool.height }}%"/>

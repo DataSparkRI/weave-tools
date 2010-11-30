@@ -1,1 +1,0 @@
-{% load weave_tags %}    <ColorTableTool title="" width="{{ tool.width }}%" height="{{ tool.height }}%"/>

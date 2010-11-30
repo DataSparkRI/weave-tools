@@ -73,62 +73,6 @@ class AttributeColumn(BaseAttributeColumn):
     def __unicode__(self):
         return u"%s" % self.full_display_name
     
-class DataFilter(models.Model):
-    file = models.FileField(upload_to='data_filter_files',blank=True)
-    name = models.CharField(max_length=100,unique=True)
-    display = models.BooleanField(default=True)
-    key_unit_type = models.CharField(max_length=256)
-    
-    def get_xml(self):
-        from django.template.loader import render_to_string
-        context = { 'data_filter': self, 'indicators': Indicator.objects.all() }
-        return render_to_string('weave/data_filter_config.xml', context)
-    
-    def indicator_name(self, indicator):
-        "Returns the displayed name of an indicator when used in this data filter"
-        return "%s (%s)" % (indicator.weave_display_name, self.name)
-
-    def get_data_table(self):
-        try:
-            return DataTable.objects.get(name='%s - %s' % (self.key_unit_type.name, self.name))
-        except DataTable.DoesNotExist:
-            return None
-    
-    def save(self, *args, **kwargs):
-        super(DataFilter, self).save(*args, **kwargs)
-
-        try:
-            # update DataFilterKey values based on the current file
-            # file.file.file is really unfortunate, please fix when I have more time
-            keys = map(lambda k: k.strip().split(',')[0],
-                self.file.file.file.readlines())
-            self.datafilterkey_set.all().delete()
-            for key in keys:
-                self.datafilterkey_set.create(key_value=key)
-        except IOError:
-            # file missing is recorable, just leave the DataFilter as is
-            pass
-    
-    def modify_query(self, query):
-        """ Take a data with keys query and append a sql clause to return
-        only data that matches the current filter.
-        """
-        filter_sql = "AND key_value in (SELECT key_value from weave_datafilterkey WHERE data_filter_id = %s)" % self.pk
-        if query.endswith(' '):
-            return "".join([query, filter_sql])
-        else:
-            return " ".join([query, filter_sql])
-        
-    def __unicode__(self):
-         return "%s" % self.name
-
-class DataFilterKey(models.Model):
-    data_filter = models.ForeignKey(DataFilter)
-    key_value = models.CharField(max_length=100)
-
-    def __unicode__(self):
-        return u"%s - %s" % (self.data_filter, self.key_value)
-
 # stores files in Glassfish's docroot, rather than MEDIA_ROOT
 # a Proxy matching the base_url should be setup in Apache
 weave_config_storage = FileSystemStorage(location=settings.WEAVE['DOCROOT'], base_url="/weave_docroot/")
@@ -165,6 +109,4 @@ class GeometryCollection(models.Model):
     
     def __unicode__(self):
         return u'Geometry Collection: %s' % (self.name, )
-
-
 
