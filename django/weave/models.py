@@ -8,8 +8,6 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 
-from weave.fields import PercentField
-
 class AttributeColumnManager(models.Manager):
     def years(self):
         return self.exclude(year=None).exclude(year='') \
