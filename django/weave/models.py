@@ -138,18 +138,9 @@ class ClientConfiguration(models.Model):
     file = models.FileField(upload_to='weave_config',blank=True, storage=weave_config_storage, null=True)
     
     def save(self, *args, **kwargs):
-        from webportal.unique_slugify import unique_slugify
+        from weave.util import unique_slugify
         unique_slugify(self, self.name)
         
-        # create a default weave configuration file if one doesn't exist
-        #if self.file.name == '':
-        #    upload_path = os.path.join('%s.xml' % self.slug)
-        #    default_weave_path = os.path.join(
-        #            settings.WEAVE['DOCROOT'],'default.xml')
-        #    target_path = os.path.join(
-        #            settings.WEAVE['DOCROOT'], upload_path)
-        #    shutil.copyfile(default_weave_path, target_path)
-        #    self.file = upload_path
         super(ClientConfiguration, self).save(*args, **kwargs)
         
     def get_defaults_path(self):
