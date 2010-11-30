@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-from weave.models import ClientConfiguration, DataFilter
+from weave.models import ClientConfiguration 
 
 def client_config(request, config_slug):
     config = get_object_or_404(ClientConfiguration, slug=config_slug)
