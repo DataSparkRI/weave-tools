@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf import settings
 from weave.models import ClientConfiguration, GeometryCollection, \
-                            AttributeColumn)
+                            AttributeColumn
 
 class ClientConfigurationAdmin(admin.ModelAdmin):
     exclude = ('file', )
