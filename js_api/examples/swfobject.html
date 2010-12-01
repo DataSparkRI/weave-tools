@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Weave swfobject test</title>
+	<script type="text/javascript" src="../lib/swfobject/swfobject/swfobject.js"></script>
+</head>
+<body>
+	<h1>Weave swfobject test</h1>
+	<div>
+		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="weave" name="weave" width="780" height="420">
+			<param name="movie" value="/weave.swf">
+			<param name="allowscriptaccess" value="always">
+			<param name="allowfullscreen" value="true">
+			<!--[if !IE]>-->
+			<object type="application/x-shockwave-flash" id="weave" name="weave" data="/weave.swf" width="780" height="420">
+				<param name="allowscriptaccess" value="always">
+				<param name="allowfullscreen" value="true">
+			<!--<![endif]-->
+				<p>Alternative content</p>
+			<!--[if !IE]>-->
+			</object>
+			<!--<![endif]-->
+			</object>
+	</div>
+</body>
+</html>

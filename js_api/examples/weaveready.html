@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Weave Weaveready test</title>
+	<!-- include swfobject library -->
+	<script type="text/javascript" src="../lib/swfobject/swfobject/swfobject.js"></script>
+	<script type="text/javascript" src="../weave.js"></script>
+	<script language="JavaScript" type="text/javascript">
+		// Weaveready(MyParameter) is called when API is available
+		function Weaveready(Weave) {
+			var weaveSessionState = Weave.getSessionState([]);
+			console.info(weaveSessionState);
+		}
+	</script>
+</head>
+<body>
+	<h1>Weave weaveready test</h1>
+	<p>Function that tells you when Weave Client Side API is loaded and available</p>
+	<div id="Weave">
+		<p>Weave Container</p>
+	</div>
+</body>
+</html>
