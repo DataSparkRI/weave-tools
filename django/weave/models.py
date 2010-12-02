@@ -58,10 +58,6 @@ class AttributeColumn(BaseAttributeColumn):
 
     objects = AttributeColumnManager()
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('dictionary-indicator', (), {'indicator_slug': self.slug})
-    
     @property
     def weave_display_name(self):
         return self.display_name
@@ -72,29 +68,6 @@ class AttributeColumn(BaseAttributeColumn):
 
     def __unicode__(self):
         return u"%s" % self.full_display_name
-    
-# stores files in Glassfish's docroot, rather than MEDIA_ROOT
-# a Proxy matching the base_url should be setup in Apache
-weave_config_storage = FileSystemStorage(location=settings.WEAVE['DOCROOT'], base_url="/weave_docroot/")
-class ClientConfiguration(models.Model):
-    name = models.CharField(max_length=100,unique=True)
-    slug = models.SlugField(unique=True,db_index=True)
-    file = models.FileField(upload_to='weave_config',blank=True, storage=weave_config_storage, null=True)
-    
-    def save(self, *args, **kwargs):
-        from weave.util import unique_slugify
-        unique_slugify(self, self.name)
-        
-        super(ClientConfiguration, self).save(*args, **kwargs)
-        
-    def get_defaults_path(self):
-        return '/weave_docroot/%s.xml' % self.slug
-        if not self.file:
-            return '/weave_docroot/default.xml'
-        return self.file.url
-    
-    def __unicode__(self):
-        return "%s" % self.name
 
 class GeometryCollection(models.Model):
     """A geometry collection that's been imported through the Weave Admin
@@ -109,4 +82,24 @@ class GeometryCollection(models.Model):
     
     def __unicode__(self):
         return u'Geometry Collection: %s' % (self.name, )
+
+    
+class ClientConfiguration(models.Model):
+    FORMAT_CHOICES = (
+        ('json', 'json'),
+        ('xml', 'xml'),
+    )
+    name = models.CharField(max_length=100,unique=True)
+    slug = models.SlugField(unique=True,db_index=True)
+    content = models.TextField()
+    content_format = models.CharField(max_length=4,choices=FORMAT_CHOICES, default='json')
+
+    def save(self, *args, **kwargs):
+        from weave.util import unique_slugify
+        unique_slugify(self, self.name)
+        super(ClientConfiguration, self).save(*args, **kwargs)
+        
+    def __unicode__(self):
+        return "%s" % self.name
+
 
