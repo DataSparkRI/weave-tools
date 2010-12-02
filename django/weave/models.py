@@ -91,7 +91,7 @@ class ClientConfiguration(models.Model):
     )
     name = models.CharField(max_length=100,unique=True)
     slug = models.SlugField(unique=True,db_index=True)
-    content = models.TextField()
+    content = models.TextField(default='') #TODO: add minimal config
     content_format = models.CharField(max_length=4,choices=FORMAT_CHOICES, default='json')
 
     def save(self, *args, **kwargs):
