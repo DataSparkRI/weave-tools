@@ -9,31 +9,54 @@ The following two JavaScript files are required and need to be loaded in your HT
 
 ::
 
-	<script type="text/javascript" src="path/to/lib/swfobject/swfobject/swfobject.js"></script>
-	<script type="text/javascript" src="path/to/weave.js"></script>
+    <script type="text/javascript" src="path/to/lib/swfobject/swfobject/swfobject.js"></script>
+    <script type="text/javascript" src="path/to/weave.js"></script>
 
-The API will look for the ID ``Weave`` in the DOM to embed the Weave Flash object. Add the ID ``Weave`` to the element where Weave should be embedded:
+The function ``Weave.embed(options)`` creates a Weave Flash object on the web page. It includes ``embedSWF`` from the swfobject library, which inherits all options from ``Weave.embed``. 
+
+Example usage:
 
 ::
 
-	<div id="Weave">
-		<p>Weave Container</p>
-	</div>
+    Weave.embed({
 
-If Weave cannot be loaded, the alternative content inside that tag will show on your web page.
+        // path to weave.swf
+        swfUrl: '/weave.swf',
 
+        // id of the element on the web page where
+        // the Weave Flash object should be added
+        id: 'weavediv',
+
+        // Weave dimensions
+        width: '720',
+        height: '480',
+
+        // base url of your Weave installation
+        params : {
+            base : 'http://localhost:8080/'
+        }
+    });
+
+Please consult the swfobjec.embedSWF `documentation <http://code.google.com/p/swfobject/wiki/documentation#STEP_3:_Embed_your_SWF_with>`_ for more information on the options argument.
 
 Start using the API
 ===================
 
-The function ``Weaveready()`` is called when the API becomes available in the Weave Flash object.
+As soon as the Weave Client-Side JavaScript API becomes available, the function ``Weave.ready()`` is called. Add it to your JavaScript and start using the API.
 
 Example:
 
 ::
 
-	<script language="JavaScript" type="text/javascript">
-		function Weaveready(Weave) {
-			alert(Weave.getSessionState([]));
-		}
-	</script>
+    Weave.ready = function () {
+
+        // all Weave API methods can be called at this point
+
+        mySessionState = Weave.API.getSessionState([]);
+        console.info(mySessionState);
+
+    }
+
+All Weave API functions are available with Weave.API.method. Please see `this document <http://129.63.8.210:8080/asdoc/org/openindicators/WeaveAPI.html>`_ for more information on all Weave Client-Side methods. 
+
+It is good practice to extend the global ``Weave`` object with core Weave properties (e.g. ``Weave.sessionState = Weave.API.getSessionState([]);`` instead).

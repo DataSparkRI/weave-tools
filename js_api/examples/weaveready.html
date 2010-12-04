@@ -1,22 +1,46 @@
 <html>
 <head>
-	<title>Weave Weaveready test</title>
-	<!-- include swfobject library -->
-	<script type="text/javascript" src="../lib/swfobject/swfobject/swfobject.js"></script>
-	<script type="text/javascript" src="../weave.js"></script>
-	<script language="JavaScript" type="text/javascript">
-		// Weaveready(MyParameter) is called when API is available
-		function Weaveready(Weave) {
-			var weaveSessionState = Weave.getSessionState([]);
-			console.info(weaveSessionState);
-		}
-	</script>
+  <title>Weave Weaveready test</title>
+  <!-- include swfobject library -->
+  <script type="text/javascript" src="../lib/swfobject/swfobject/swfobject.js"></script>
+  <script type="text/javascript" src="../weave.js"></script>
+  <script language="JavaScript" type="text/javascript">
+  
+    function init() {
+      
+      /*
+       * My Weave Flash configuration
+       */
+      
+      Weave.embed({
+        swfUrl: '/weave.swf',
+        id: 'weavediv',
+        version: '9.0.0',
+        flashvars: {},
+        params: {},
+        attributes: {}
+      });
+      
+    }
+    
+    Weave.ready = function () {
+      
+      /*
+       * all Weave API dependencies should go here
+       */
+       
+      mySessionState = Weave.API.getSessionState([]);
+      console.info(mySessionState);
+      
+    }
+  
+  </script>
 </head>
-<body>
-	<h1>Weave weaveready test</h1>
-	<p>Function that tells you when Weave Client Side API is loaded and available</p>
-	<div id="Weave">
-		<p>Weave Container</p>
-	</div>
+<body onload="init();">
+  <h1>Weave.ready() test</h1>
+  <p>Weave.ready() is called when the API has become available.</p>
+  <div id="weavediv">
+    <p>Sorry, Weave could not be loaded.</p>
+  </div>
 </body>
 </html>
