@@ -22,19 +22,24 @@
       this.params = {
         quality : 'high',
         bgcolor : '#ffffff',
-        allowFullScreen : 'true',
+        allowfullscreen : 'true',
         allowscriptaccess : 'always',
         base : 'http://localhost:8080/'
       };
       this.attributes = {};
  
       /*
-       * Overriding default options with request options.
+       * Overriding default with custom options.
        */
       
       for (var option in options) {
         
         this[option] = options[option];
+        
+        /*
+         * FIXME: check if option is object and only override 
+         * single properties instead of entire object.
+         */
         
       }
       
@@ -67,7 +72,7 @@
     },
     
     /*
-     * Check if Weave API is available.
+     * Check if Weave Session Editing API is available.
      */
     
     checkAPI: function () {
@@ -75,7 +80,7 @@
       try {
         
         /*
-         * Object that contians API
+         * Weave Session Editing API
          */
          
         Weave.API = document.getElementById(this.id);
@@ -93,7 +98,7 @@
         this.sessionState = null;
         
         /*
-         * API is ready to use.
+         * Weave is ready to use.
          */
          
          Weave.ready();

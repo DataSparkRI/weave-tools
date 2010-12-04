@@ -2,3 +2,5 @@
 *.pyc
 django/example_project/local_settings.py
 .DS_Store
+
+.project

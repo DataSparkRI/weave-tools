@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Weave Weaveready test</title>
+  <title>Weave.ready() example</title>
   <!-- include swfobject library -->
   <script type="text/javascript" src="../lib/swfobject/swfobject/swfobject.js"></script>
   <script type="text/javascript" src="../weave.js"></script>
@@ -9,16 +9,14 @@
     function init() {
       
       /*
-       * My Weave Flash configuration
+       * Embed a Weave object with some custom options.
        */
       
       Weave.embed({
         swfUrl: '/weave.swf',
         id: 'weavediv',
-        version: '9.0.0',
-        flashvars: {},
-        params: {},
-        attributes: {}
+        width = '720',
+        height = '480'
       });
       
     }
@@ -26,7 +24,7 @@
     Weave.ready = function () {
       
       /*
-       * all Weave API dependencies should go here
+       * The Weave Session Editing API can be used now.
        */
        
       mySessionState = Weave.API.getSessionState([]);
@@ -37,8 +35,8 @@
   </script>
 </head>
 <body onload="init();">
-  <h1>Weave.ready() test</h1>
-  <p>Weave.ready() is called when the API has become available.</p>
+  <h1>Weave.ready() example</h1>
+  <p>Weave.ready() is called when the Weave Session editing API has become available.</p>
   <div id="weavediv">
     <p>Sorry, Weave could not be loaded.</p>
   </div>
