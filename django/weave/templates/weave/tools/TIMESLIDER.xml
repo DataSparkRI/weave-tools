@@ -1,2 +1,0 @@
-{% load weave_tags %}    <TimeSliderTool title="" times="{{ tool.times }}" width="{{ tool.width }}%" height="{{ tool.height }}%"/>
-

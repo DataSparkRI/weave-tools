@@ -1,1 +1,0 @@
-{% load weave_tags %}    <ScatterPlotTool title="" xAttributeColumnName="{% indicator_name tool.xAttribute tool.datafilter_to_use %}" yAttributeColumnName="{% indicator_name tool.yAttribute tool.datafilter_to_use %}" width="{{ tool.width }}%" height="{{ tool.height }}%"/>

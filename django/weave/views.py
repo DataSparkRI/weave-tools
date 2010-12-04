@@ -4,34 +4,9 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.conf import settings
 
-from weave.models import ClientConfiguration, DataFilter
-
-def index(request):
-    "Weave landing page"
-    defaults_path = reverse('indicators-default_hierarchy')
-    client_config = get_object_or_404(ClientConfiguration,name="Default")
-    if not request.GET.has_key('defaults'):
-        return HttpResponseRedirect("%s?defaults=%s" % (request.path, reverse('indicators-default_hierarchy')))
-    return render_to_response('weave/index.html', { }, 
-        context_instance=RequestContext(request))
+from weave.models import ClientConfiguration 
 
 def client_config(request, config_slug):
     config = get_object_or_404(ClientConfiguration, slug=config_slug)
     return HttpResponse(config.get_xml(), mimetype="application/xml")
-
-def hierarchy(request):
-    return render_to_response('weave/main_hierarchy.xml', { 'key_unit_types': KeyUnitType.objects.exclude(name='') }, 
-        context_instance=RequestContext(request))
-
-def sqlconfig(request):
-    from django.db.models import Q
-    context = {
-        'key_unit_types': KeyUnitType.objects.all(),
-        'weave_settings': settings.WEAVE,
-        'data_tables': DataTable.objects.all(),
-        'settings': settings,
-    }
-    return render_to_response('weave/sqlconfig.xml', context, 
-        context_instance=RequestContext(request),
-        mimetype="application/xml")
 

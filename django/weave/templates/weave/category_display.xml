@@ -1,8 +1,0 @@
-  {% load weave_tags %}<category name="{{ category.name }}">
-    {% for indicator in category.indicators.all %}
-        <indicator name="{% indicator_name indicator data_filter %}"/>
-    {% endfor %}
-    {% for child in category.children.all %}
-        {% category_display child data_filter %}
-    {% endfor %}
-  </category>
