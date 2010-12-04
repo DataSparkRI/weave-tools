@@ -40,7 +40,7 @@ Please consult the swfobjec.embedSWF `documentation <http://code.google.com/p/sw
 Start using the API
 ===================
 
-As soon as the Weave Session Editing API becomes available, the function ``Weave.ready()`` is called. Add it to your JavaScript and start using the API.
+As soon as the Weave Session Editing API becomes available, the function ``Weave.ready()`` is called. Add ``Weave.ready = function () {}`` to your document and you can start using the Weave Session Editing API.
 
 Example:
 
@@ -53,7 +53,7 @@ Example:
 
     }
 
-All Weave Session Editing API functions are available in form of  ``Weave.API.method`` , where *method* corresponds to a Weave Session Editing function. Please see `this document <http://129.63.8.210:8080/asdoc/org/openindicators/WeaveAPI.html>`_ for more information on all Weave Session Editing function. 
+All Weave Session Editing API functions are available in form of  ``Weave.API.method`` , where *method* corresponds to a Weave Session Editing function. Please see `this document <http://129.63.8.210:8080/asdoc/org/openindicators/WeaveAPI.html>`_ for more information on about the Weave Session Editing API scope. 
 
 The global ``Weave`` object can be used to manage Weave core properties, such as the session state for instance
 
