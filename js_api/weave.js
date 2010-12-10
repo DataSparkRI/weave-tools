@@ -34,17 +34,28 @@
       
       for (var option in options) {
         
-        this[option] = options[option];
-        
         /*
-         * FIXME: check if option is object and only override 
-         * single properties instead of entire object.
+         * Parsing nested options object
          */
         
+        if (typeof(options[option]) === 'object') {
+          
+          for (var suboption in options[option]) {
+
+            this[option][suboption] = options[option][suboption];
+
+          }
+          
+        } else {
+            
+          this[option] = options[option];
+            
+        }
+
       }
       
       /*
-       * Embed the Weave Flash object with swfobject.
+       * Embed the Weave Flash object with swfobject and swfobject options.
        */
        
       swfobject.embedSWF(

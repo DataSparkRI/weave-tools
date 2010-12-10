@@ -2,7 +2,7 @@
  Weave Client-Side JavaScript API
 ==================================
 
-Weave Client-Side JavaScript API is a high-level API built over the session editing API provided by Weave.
+Weave Client-Side JavaScript API is a high-level API built over the Session Editing API provided by Weave.
 
 Getting started
 ===============
@@ -14,7 +14,7 @@ The following two JavaScript files are required and need to be loaded in your HT
     <script type="text/javascript" src="path/to/lib/swfobject/swfobject/swfobject.js"></script>
     <script type="text/javascript" src="path/to/weave.js"></script>
 
-The function ``Weave.embed(options)`` creates a Weave Flash object on the web page. It includes ``embedSWF`` from the swfobject library, which inherits all options from ``Weave.embed``. 
+The function ``Weave.embed(options)`` creates a Weave Flash object on the web page. It includes ``embedSWF`` from the swfobject library, which inherits all options from ``Weave.embed(options)``. 
 
 Example:
 
@@ -22,7 +22,7 @@ Example:
 
     Weave.embed({
 
-        // path to weave.swf
+        // path to Weave client (swf file)
         swfUrl: '/weave.swf',
 
         // id of the element on the web page where
@@ -32,10 +32,16 @@ Example:
         // Weave dimensions
         width: '720',
         height: '480',
+        
+        // Flash specific param elements
+        params : {
+          // Webservice URL for Weave servlet
+          base : 'http://localhost:8080/'
+        }
 
     });
 
-Please consult the swfobjec.embedSWF `documentation <http://code.google.com/p/swfobject/wiki/documentation#STEP_3:_Embed_your_SWF_with>`_ for more information on the options argument.
+Please consult the swfobjec.embedSWF `documentation <http://code.google.com/p/swfobject/wiki/documentation#STEP_3:_Embed_your_SWF_with>`_ for a full list of valid options.
 
 Start using the API
 ===================

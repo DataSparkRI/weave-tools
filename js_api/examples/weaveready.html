@@ -6,7 +6,7 @@
   <script type="text/javascript" src="../weave.js"></script>
   <script language="JavaScript" type="text/javascript">
   
-    function init() {
+    window.onload = function init() {
       
       /*
        * Embed a Weave object with some custom options.
@@ -15,8 +15,12 @@
       Weave.embed({
         swfUrl: '/weave.swf',
         id: 'weavediv',
-        width = '720',
-        height = '480'
+        width : '720',
+        height : '480',
+        params : {
+          // Webservice URL
+          base : 'http://localhost:8080/'
+        }
       });
       
     }
@@ -28,15 +32,15 @@
        */
        
       mySessionState = Weave.API.getSessionState([]);
-      console.info(mySessionState);
+      alert('The Weave Session Editing API is loaded.');
       
     }
   
   </script>
 </head>
-<body onload="init();">
+<body>
   <h1>Weave.ready() example</h1>
-  <p>Weave.ready() is called when the Weave Session editing API has become available.</p>
+  <p>The function Weave.ready() is called as soon as the Weave Session Editing API is available.</p>
   <div id="weavediv">
     <p>Sorry, Weave could not be loaded.</p>
   </div>
