@@ -59,7 +59,7 @@ Example:
 
     }
 
-All Weave Session Editing API functions are available in form of  ``Weave.API.method`` , where *method* corresponds to a Weave Session Editing function. Please see `this document <http://129.63.8.210:8080/asdoc/org/openindicators/WeaveAPI.html>`_ for more information on about the Weave Session Editing API scope. 
+All Weave Session Editing API functions are available in form of  ``Weave.API.method`` , where *method* corresponds to a Weave Session Editing function. Please see `Weave AS Interface IExternalSessionStateInterface <http://129.63.8.210:8080/asdoc/org/openindicators/api/core/IExternalSessionStateInterface.html>`_ for more information on about the Weave Session Editing API scope. 
 
 The global ``Weave`` object can be used to manage Weave core properties, such as the session state for instance
 
