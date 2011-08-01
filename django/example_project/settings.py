@@ -91,7 +91,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'south',
-    'weave'
+    'weave_tools',
 )
 
 try:
